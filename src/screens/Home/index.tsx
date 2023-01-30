@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 
 import { useNavigation } from '@react-navigation/native'
 
@@ -14,16 +14,17 @@ import { useTailwind } from 'tailwind-rn';
 import { 
   View, 
   Text, 
-  StyleSheet,
-  TouchableOpacity,
   Image,
   TextInput,
   ScrollView
 } from 'react-native'
 
 import { Categorias, Header } from '../../components';
+
 import Layout from '../../components/Layout';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
+import FeaturedRow from '../../components/FeaturedRow';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -42,48 +43,53 @@ const Home = () => {
 
   const tailwind = useTailwind();
 
+  const [search, setSearch] = useState<string>("");
+  useEffect(() => { console.log(search) },[search]);
+  
   return (
     <SafeAreaView style={{ backgroundColor: '#121212' }}>
-      <View style={tailwind('flex-row pb-3 items-center mx-4')}>
-        <Image 
-          source={{
-            uri: "https://links.papareact.com/wru" 
-          }}
-          style={tailwind('h-7 w-7 bg-gray-300 p-4 rounded-full')}
-        />
-        <View style={tailwind('flex-1 mx-2')}>
-          <Text style={tailwind('font-bold text-gray-400 text-xs')}>
-            Entrega já
-          </Text>
-          <Text style={tailwind('font-bold text-gray-100 text-xl')}>
-            Localização atual
-            <ChevronDownIcon size={20} color="#f9f9f9" />
-          </Text>
-        </View>
-          
-        <UserIcon size={25} color="#F9F9F9" />
-      </View>
+      
+      <Header  />
 
+      {/* SEARCH AREA */}
       <View style={tailwind('flex-row items-center pb-2 mx-4')}>
+        
+        {/* FILTER */}
         <View style={tailwind('flex-row flex-1 bg-gray-200 p-3')}>
           <SparklesIcon size={20} color="#F9F9F9" />
           <TextInput 
+            value={search}
+            onChange={(event: any) => 
+              console.log(event,'EVENTO')
+            }
             placeholder='Restaurantes próximos' 
             keyboardType='default' 
           />
         </View>
         
-        <AdjustmentsHorizontalIcon color="#F9F9F9" style={tailwind('mx-2')} />
+        {/* ANOTHER FILTER */}
+        <AdjustmentsHorizontalIcon 
+          color="#F9F9F9" 
+          style={tailwind('mx-2')} 
+        />
       </View>
-
+      
+      {/* SCROOLLVIEW CATEGORIES */}
       <ScrollView
         contentContainerStyle={{
           paddingBottom: 100,
         }} 
-        style={tailwind('bg-gray-200')}
+        style={tailwind('bg-gray-900')}
       >
-        
         <Categorias />
+        {['Mais pedidos 🤲','Mais baratos 🔥','Mais Populares ❤️'].map((i, idx) => (
+          <FeaturedRow
+            key={idx}
+            id={idx} 
+            title={i} 
+            description="Pago recentenmente por parceiros" 
+          />
+        ))}
       </ScrollView>
     
     </SafeAreaView>

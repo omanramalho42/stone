@@ -13,14 +13,14 @@ const Categorias = () => {
       showsHorizontalScrollIndicator={false}
     >
 
-      {['1','1','1'].map((i) => (
+      {['1','1','1','2','2','1','1','2','1','2'].map((i,idx) => (
         <CategoryCard 
+          key={idx}
           imgUrl="https://links.papareact.com/wru" 
           title="Product One" 
         />
       ))}
       
-      <Text>Categorias</Text>
     </ScrollView>
   )
 }

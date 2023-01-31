@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Home, Profile } from '../screens';
+import { Home, Profile, RestaurantScreen } from '../screens';
 const { Screen, Navigator } = createNativeStackNavigator();
 
 export const StackRoutes:React.FC = () => {
@@ -28,6 +28,14 @@ export const StackRoutes:React.FC = () => {
         component={Profile}
         options={{
           title: "Configurações de usuário",
+          headerTitleAlign: 'center'
+        }} 
+      />
+      <Screen 
+        name='Restaurant' 
+        component={RestaurantScreen}
+        options={{
+          title: "Página do Restaurante",
           headerTitleAlign: 'center'
         }} 
       />

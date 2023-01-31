@@ -39,21 +39,22 @@ const Home = () => {
   
   useLayoutEffect(() => {
     SanityClient.fetch(`
-      *[_type == "destaque"] {
+    *[_type == "destaque"] {
+      ...,
+      restaurantes[]->{
         ...,
-        restaurantes[]->(
-          ...,
-          pratos[]->
+        pratos[]->,
+        type-> {
+          name
         }
-      }`
+      },
+    }`
     ).then((data) => {
-      console.log(data),
       setFeaturedCategories(data);
     });
   },[]);
 
   const navigation = useNavigation();
-
 
   const handleSwitchScreen = () => {
     //@ts-ignore
@@ -101,12 +102,12 @@ const Home = () => {
         style={tailwind('bg-gray-900')}
       >
         <Categorias />
-        {['Mais pedidos 🤲','Mais baratos 🔥','Mais Populares ❤️'].map((i, idx) => (
+        {featuredCategories?.map((i) => (
           <FeaturedRow
-            key={idx}
-            id={idx} 
-            title={i} 
-            description="Pago recentenmente por parceiros" 
+            key={i._id}
+            id={i._id} 
+            title={i.nome} 
+            description={i.curta_descricao} 
           />
         ))}
       </ScrollView>

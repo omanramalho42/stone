@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 import { useTailwind } from 'tailwind-rn';
 
@@ -7,6 +7,8 @@ import { ScrollView, Text, View } from 'react-native'
 import { ArrowRightIcon } from 'react-native-heroicons/solid';
 
 import RestaurantCard from '../RestaurantCard';
+
+import SanityClient from '../../../sanity';
 
 interface FeaturedRowProps {
   title: string;
@@ -24,6 +26,25 @@ const FeautedRow = ({
   
   const tailwind = useTailwind();
 
+  const [restaurants, setRestaurants] = useState([]);
+
+  useLayoutEffect(() => {
+    SanityClient.fetch(`
+      *[_type == "destaque" && _id == $id] {
+        ...,
+        restaurantes[]->{
+          ...,
+          pratos[]->,
+          type-> {
+            name
+          }
+        },
+      }[0]
+    `, { id }).then(
+      (data) => setRestaurants(data?.restaurantes)
+    );
+  },[]);
+  
   return (
     <View>
       <View style={tailwind('mt-4 flex-row items-center justify-between px-4')}>
@@ -45,78 +66,22 @@ const FeautedRow = ({
         }}
         style={tailwind('pt-4')}
       >
-        <RestaurantCard 
-          id={123}
-          imgUrl="https://links.papareact.com/wru"
-          title="Oman"
-          rating={4.5}
-          genre="Austalian"
-          address="Clovis de maia"
-          excerpt="descricao breve do reustaurante"
-          dishes={[]}
-          long={20}
-          lat={0}
+       {restaurants?.map((restaurant: any) => restaurant && (
+        <RestaurantCard
+          key={restaurant._id}
+          id={restaurant._id}
+          imgUrl={restaurant.imagem}
+          title={restaurant.nome}
+          rating={restaurant.avaliacao}
+          genre={restaurant.tipo?.nome}
+          address={restaurant.endereco}
+          excerpt={restaurant.curta_descricao}
+          dishes={restaurant.pratos}
+          long={restaurant.long}
+          lat={restaurant.lat} 
+          short_description={restaurant.curta_descricao}
         />
-        <RestaurantCard 
-          id={123}
-          imgUrl="https://links.papareact.com/wru"
-          title="Oman"
-          rating={4.5}
-          genre="Austalian"
-          address="Clovis de maia"
-          excerpt="descricao breve do reustaurante"
-          dishes={[]}
-          long={20}
-          lat={0}
-        />
-        <RestaurantCard 
-          id={123}
-          imgUrl="https://links.papareact.com/wru"
-          title="Oman"
-          rating={4.5}
-          genre="Austalian"
-          address="Clovis de maia"
-          excerpt="descricao breve do reustaurante"
-          dishes={[]}
-          long={20}
-          lat={0}
-        />
-        <RestaurantCard 
-          id={123}
-          imgUrl="https://links.papareact.com/wru"
-          title="Oman"
-          rating={4.5}
-          genre="Austalian"
-          address="Clovis de maia"
-          excerpt="descricao breve do reustaurante"
-          dishes={[]}
-          long={20}
-          lat={0}
-        />
-        <RestaurantCard 
-          id={123}
-          imgUrl="https://links.papareact.com/wru"
-          title="Oman"
-          rating={4.5}
-          genre="Austalian"
-          address="Clovis de maia"
-          excerpt="descricao breve do reustaurante"
-          dishes={[]}
-          long={20}
-          lat={0}
-        />
-        <RestaurantCard 
-          id={123}
-          imgUrl="https://links.papareact.com/wru"
-          title="Oman"
-          rating={4.5}
-          genre="Austalian"
-          address="Clovis de maia"
-          excerpt="descricao breve do reustaurante"
-          dishes={[]}
-          long={20}
-          lat={0}
-        />
+       ))}
       </ScrollView>
     </View>
   )

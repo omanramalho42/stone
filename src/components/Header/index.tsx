@@ -2,11 +2,15 @@ import React from 'react'
 
 import { useTailwind } from 'tailwind-rn'
 
+import { useNavigation } from '@react-navigation/native';
+
 import { View, Text, Image } from 'react-native'
 import { ChevronDownIcon, UserIcon } from 'react-native-heroicons/solid';
 
 const Header = () => {
   const tailwind = useTailwind();
+
+  const navigate = useNavigation();
 
   return (
     <View style={tailwind('flex-row pb-3 items-center mx-4')}>
@@ -25,8 +29,13 @@ const Header = () => {
           <ChevronDownIcon size={20} color="#f9f9f9" />
         </Text>
       </View>
-        
-      <UserIcon size={25} color="#F9F9F9" />
+      
+      <TouchableOpacity onPress={() => navigate.navigation('Profile')}>
+        <UserIcon 
+          size={25} 
+          color="#F9F9F9" 
+        />
+      </TouchableOpacity>
     </View>
   )
 }

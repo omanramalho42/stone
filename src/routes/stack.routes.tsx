@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Home, Profile, RestaurantScreen } from '../screens';
+import { BasketScreen, Home, Profile, RestaurantScreen } from '../screens';
 const { Screen, Navigator } = createNativeStackNavigator();
 
 export const StackRoutes:React.FC = () => {
@@ -36,6 +36,15 @@ export const StackRoutes:React.FC = () => {
         component={RestaurantScreen}
         options={{
           title: "Página do Restaurante",
+          headerTitleAlign: 'center'
+        }} 
+      />
+      <Screen 
+        name='Basket'
+        component={BasketScreen}
+        options={{
+          presentation: 'modal',
+          headerShown: false,
           headerTitleAlign: 'center'
         }} 
       />

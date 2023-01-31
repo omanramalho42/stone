@@ -5,13 +5,45 @@ import { useTailwind } from 'tailwind-rn'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 
 import { urlFor } from '../../../sanity';
+
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { 
+  selectBasketItems, 
+  addToBasket, 
+  selectBasketItemsWithId, 
+  removeFromBasket 
+} from '../../../basketReducer';
+
 // import { Currency } from 'react-currency-formatter';
 
 const DishRow = ({ id, name, description, price, image }: any) => {
   const tailwind = useTailwind();
 
+  const items = useSelector((state) => 
+    selectBasketItemsWithId(state, id)
+  );
+
   const [isPressed, setIsPressed] = useState(false);
+  const dispatch = useDispatch();
+  
+  const handleAddItemToBasket = () => {
+    dispatch(addToBasket({ 
+      id, 
+      name, 
+      description, 
+      price, 
+      image 
+    }));
+  }
+
+  const handleRemoveItemFromBasket = () => {
+    if (!items.length) return;
+
+    dispatch(removeFromBasket({ id }));
+  }
 
   return (
     <>
@@ -37,12 +69,12 @@ const DishRow = ({ id, name, description, price, image }: any) => {
           
           <View>
             <Image 
-              source={{ uri:urlFor(image).url() }}
+              source={{ uri: image !== undefined ? urlFor(image).url() || '' : ''}}
               style={[
                 { borderWidth: 1, borderColor: '#F9F9F9' },
                 tailwind('h-20 w-20 bg-gray-300 p-4')
               ]}  
-              />
+            />
           </View>
         </View>
       </TouchableOpacity>
@@ -51,13 +83,24 @@ const DishRow = ({ id, name, description, price, image }: any) => {
         <View style={tailwind('bg-white px-4')}>
           <View style={tailwind('flex-row items-center mx-2 pb-3')}>
             <TouchableOpacity>
-              <MinusCircleIcon size={20} color="#F9F9F9" />
+              <MinusCircleIcon 
+                disabled={!items.length}
+                size={32} 
+                color={items.length <= 0 ? 'gray' : "#f6a103"}
+                onPress={handleRemoveItemFromBasket} 
+              />
             </TouchableOpacity>
 
-            <Text>0</Text>
+            <Text style={tailwind('mx-2')}>
+              { items.length }
+            </Text>
 
             <TouchableOpacity>
-              <PlusCircleIcon size={20} color="#F9F9F9" />
+              <PlusCircleIcon 
+                size={32} 
+                color="#f6a103"
+                onPress={handleAddItemToBasket} 
+              />
             </TouchableOpacity>
           </View>
         </View>

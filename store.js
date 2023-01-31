@@ -1,12 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { createSlice } from "@reduxjs/toolkit"
+import {configureStore} from '@reduxjs/toolkit';
+import basketReducer from './basketReducer';
+import restaurantSlice from './restaurantReducer';
 
-const messageSlice = createSlice({
-  name: "message",
-  initialState: {
-    message: "Initial message"
+export const store = configureStore({
+  reducer: {
+    basket: basketReducer, 
+    restaurant: restaurantSlice
   },
-  reducers: {}
-})
-
-export default messageSlice.reducer;
+});

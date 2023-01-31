@@ -4,13 +4,13 @@ import { useTailwind } from 'tailwind-rn'
 
 import { useNavigation } from '@react-navigation/native';
 
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { ChevronDownIcon, UserIcon } from 'react-native-heroicons/solid';
 
 const Header = () => {
   const tailwind = useTailwind();
 
-  const navigate = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <View style={tailwind('flex-row pb-3 items-center mx-4')}>
@@ -30,7 +30,12 @@ const Header = () => {
         </Text>
       </View>
       
-      <TouchableOpacity onPress={() => navigate.navigation('Profile')}>
+      <TouchableOpacity
+        onPress={() =>
+          //@ts-ignore 
+          navigation.navigate('Profile')
+        }
+      >
         <UserIcon 
           size={25} 
           color="#F9F9F9" 

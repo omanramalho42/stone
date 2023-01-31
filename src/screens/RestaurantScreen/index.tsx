@@ -46,6 +46,8 @@ const RestaurantScreen = () => {
     }
   } = useRoute<any>();
 
+  useEffect(() => {console.log(dishes,'dishes')},[dishes]);
+
   useEffect(() => {
     dispatch(
       setRestaurant({
@@ -124,7 +126,7 @@ const RestaurantScreen = () => {
           </TouchableOpacity>
         </View>
         
-        <View style={tailwind('pb-36')}>
+        <View style={{ paddingBottom: 36 }}>
           <Text style={tailwind('px-4 pt-6 mb-3 font-bold text-xl')}>
             Menu
           </Text>
@@ -133,10 +135,10 @@ const RestaurantScreen = () => {
             <DishRow 
               key={dish._id}
               id={dish._id}
-              name={dish.name}
-              description={dish.short_description}
-              price={dish.price}
-              image={dish.image}
+              name={dish.nome}
+              description={dish.curta_descricao}
+              price={dish.preco}
+              image={dish.imagem}
             />
           )))}
         </View>

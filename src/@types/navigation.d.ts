@@ -5,6 +5,7 @@ export declare global {
       Restaurant: undefined;
       Profile: undefined;
       Basket: undefined;
+      PrepareOrderScreen: undefined;
     }
   }
 }

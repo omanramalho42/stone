@@ -19,7 +19,15 @@ import {
 
 // import { Currency } from 'react-currency-formatter';
 
-const DishRow = ({ id, name, description, price, image }: any) => {
+interface DishRowProps {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
+
+const DishRow = ({ id, name, description, price, image }: DishRowProps) => {
   const tailwind = useTailwind();
 
   const items = useSelector((state) => 
@@ -51,7 +59,7 @@ const DishRow = ({ id, name, description, price, image }: any) => {
         onPress={
           () => setIsPressed(!isPressed)
         } 
-        style={tailwind(`bg-white border p-4 border-gray-200 ${isPressed && 'border-b-0'}`)}
+        style={tailwind(`bg-white border p-4 border-gray-200 ${isPressed ? 'border-b-0' : ''}`)}
       >
         <View style={tailwind('flex-row')}>
           <View style={tailwind('flex-1 pr-2')}>
@@ -69,7 +77,7 @@ const DishRow = ({ id, name, description, price, image }: any) => {
           
           <View>
             <Image 
-              source={{ uri: image !== undefined ? urlFor(image).url() || '' : ''}}
+              source={{ uri: image !== undefined ? urlFor(image).url() : 'http://papareact.com/wfu'}}
               style={[
                 { borderWidth: 1, borderColor: '#F9F9F9' },
                 tailwind('h-20 w-20 bg-gray-300 p-4')

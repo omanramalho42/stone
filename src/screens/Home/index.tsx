@@ -26,15 +26,34 @@ import Layout from '../../components/Layout';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FeaturedRow from '../../components/FeaturedRow';
 
+import SanityClient from '../../../sanity';
+
 const Home = () => {
-  const navigation = useNavigation();
-  
+  const [featuredCategories, setFeaturedCategories] = useState<any[]>([]);
   //assim que a tela for construida
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   },[]);
+  
+  useLayoutEffect(() => {
+    SanityClient.fetch(`
+      *[_type == "destaque"] {
+        ...,
+        restaurantes[]->(
+          ...,
+          pratos[]->
+        }
+      }`
+    ).then((data) => {
+      console.log(data),
+      setFeaturedCategories(data);
+    });
+  },[]);
+
+  const navigation = useNavigation();
+
 
   const handleSwitchScreen = () => {
     //@ts-ignore

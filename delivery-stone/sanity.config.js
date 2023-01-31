@@ -5,9 +5,9 @@ import {schemaTypes} from './schemas'
 
 export default defineConfig({
   name: 'default',
-  title: 'stoneApp',
+  title: 'delivery-stone',
 
-  projectId: 'zvuu5sod',
+  projectId: '9epqpr09',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],

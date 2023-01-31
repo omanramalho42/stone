@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "stoneApp",
-    "slug": "stoneApp",
+    "name": "stone",
+    "slug": "stone",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,4 +1,4 @@
-# stone 📦📬
+# stone 📦📬🍴
 
 Este é um aplicativo de delivery de restaurantes desenvolvido com React Native, Typescript, Tailwind CSS e Sanity CMS. O objetivo deste aplicativo é fornecer aos usuários uma solução fácil e eficiente para encomendar refeições de seus restaurantes favoritos.
 

@@ -12,9 +12,7 @@ import {
 import { useTailwind } from 'tailwind-rn';
 
 import { 
-  View, 
-  Text, 
-  Image,
+  View,
   TextInput,
   ScrollView
 } from 'react-native'

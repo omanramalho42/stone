@@ -1,18 +1,30 @@
-import { useNavigation } from '@react-navigation/native';
-import { useTailwind } from 'tailwind-rn';
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
-import { selectBasketItems, selectBasketTotal } from '../../../basketReducer';
+import React, { useEffect }  from 'react';
 
-const BasketIcon = () => {
+import { useNavigation } from '@react-navigation/native';
+
+import { useTailwind } from 'tailwind-rn';
+
+import { 
+  View, 
+  Text, 
+  TouchableOpacity 
+} from 'react-native';
+
+import { useSelector } from 'react-redux';
+
+import { 
+  selectBasketItems, 
+  selectBasketTotal 
+} from '../../../basketReducer';
+
+const BasketIcon:React.FC = () => {
   const items = useSelector(selectBasketItems);
   const navigation = useNavigation();
   const basketTotal = useSelector(selectBasketTotal);
 
   const tailwind = useTailwind();
 
-  if(items.length === 0){
+  if(items?.length === 0){
     return null;
   }
 
@@ -35,7 +47,7 @@ const BasketIcon = () => {
         <Text style={[
           { backgroundColor: '#000', opacity: 0.4 },
           tailwind('text-white font-bold text-lg px-3')]}>
-          {items.length}
+          {items?.length}
         </Text>
         <Text style={tailwind('text-lg text-white font-bold')}>
           Olhar sexta

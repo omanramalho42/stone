@@ -1,18 +1,19 @@
-import React, { useLayoutEffect } from 'react'
+import React from 'react'
 
 import { useTailwind } from 'tailwind-rn';
 
 import {
-  Dimensions,
    Image, 
    Text, 
    TouchableOpacity, 
    View 
 } from 'react-native'
 
-import { StarIcon, MapIcon } from 'react-native-heroicons/solid';
 import { urlFor } from '../../../sanity';
-import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { useNavigation } from '@react-navigation/native';
+
+import { StarIcon, MapIcon } from 'react-native-heroicons/solid';
 
 interface RestaurantCardProps {
   id: number;

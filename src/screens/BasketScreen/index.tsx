@@ -38,25 +38,13 @@ const BasketScreen: React.FC = () => {
   },[]);
 
   useEffect(() => {
-    const groupedItems = items.reduce((results: any, item: any) => {
+    const groupedItems = items?.reduce((results: any, item: any) => {
       (results[items.id] = results[items.id] || []).push(item);
       return results;
     }, {});
 
     setGroupedItemsInBasket(groupedItems);
   },[items]);
-
-  useEffect(() => { 
-    // console.log(
-    //   items[0]?.name,
-    //   items[0]?.image,
-    //   items[0]?.price, 
-    //   'name'
-    // );
-
-    // console.log(Object.entries(groupedItemsInBasket.map(([key,items]) => items)), 'items');
-  },[groupedItemsInBasket]);
-
 
   const tailwind = useTailwind();
 
@@ -97,7 +85,7 @@ const BasketScreen: React.FC = () => {
         >
           <Image 
             source={{ 
-              uri: 'http://links.papareact.com/wru' 
+              uri: 'https://links.papareact.com/wru' 
             }} 
             style={[
               { marginRight: 5 },
@@ -117,7 +105,7 @@ const BasketScreen: React.FC = () => {
         <ScrollView>
           {Object.entries(groupedItemsInBasket).map(([key, items]) => items && (
             <View 
-              key={key} 
+              key={key || items[0].id} 
               style={[
                 tailwind('flex-row items-center mx-2 bg-white px-4'), 
                 { paddingVertical: 5, marginTop: 5 }
@@ -180,10 +168,8 @@ const BasketScreen: React.FC = () => {
               { backgroundColor: 'orange', borderRadius: 15, margin: 5 },
               tailwind('p-4')
             ]}
-            onPress={() => 
-              //@ts-ignore
-              navigation.navigate('PrepareOrderScreen')
-            }
+            //@ts-ignore
+            onPress={() => navigation.navigate('PrepareOrderScreen')}
           >
             <Text style={[
               { textAlign: 'center' },

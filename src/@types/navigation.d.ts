@@ -6,6 +6,7 @@ export declare global {
       Profile: undefined;
       Basket: undefined;
       PrepareOrderScreen: undefined;
+      Delivery: undefined;
     }
   }
 }

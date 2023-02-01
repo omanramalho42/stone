@@ -4,8 +4,17 @@ import { useTailwind } from 'tailwind-rn'
 
 import { useNavigation } from '@react-navigation/native';
 
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import { ChevronDownIcon, UserIcon } from 'react-native-heroicons/solid';
+import { 
+  View, 
+  Text, 
+  Image, 
+  TouchableOpacity 
+} from 'react-native'
+
+import { 
+  ChevronDownIcon, 
+  UserIcon
+} from 'react-native-heroicons/solid';
 
 const Header = () => {
   const tailwind = useTailwind();
@@ -16,7 +25,7 @@ const Header = () => {
     <View style={tailwind('flex-row pb-3 items-center mx-4')}>
       <Image 
         source={{
-          uri: "https://links.papareact.com/wru" 
+          uri: "http://github.com/omanramalho42.png" 
         }}
         style={tailwind('h-7 w-7 bg-gray-300 p-4 rounded-full')}
       />

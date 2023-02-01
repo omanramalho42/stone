@@ -1,7 +1,15 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { BasketScreen, Home, PrepareOrderScreen, Profile, RestaurantScreen } from '../screens';
+import { 
+  BasketScreen, 
+  Delivery, 
+  Home, 
+  PrepareOrderScreen, 
+  Profile, 
+  RestaurantScreen 
+} from '../screens';
+
 const { Screen, Navigator } = createNativeStackNavigator();
 
 export const StackRoutes:React.FC = () => {
@@ -45,18 +53,27 @@ export const StackRoutes:React.FC = () => {
         options={{
           presentation: 'modal',
           headerShown: false,
-          headerTitleAlign: 'center'
         }} 
       />
+
       <Screen 
-        name='OrderScreen'
+        name='PrepareOrderScreen'
         component={PrepareOrderScreen}
         options={{
           presentation: 'modal',
           headerShown: false,
-          headerTitleAlign: 'center'
         }} 
       />
+      <Screen 
+        name='Delivery'
+        component={Delivery}
+        options={{
+          presentation: 'modal',
+          headerShown: false,
+        }} 
+      /> 
+     
+
     </Navigator>
   )
 }

@@ -25,7 +25,7 @@ import { useDispatch } from 'react-redux';
 
 import { setRestaurant } from '../../../restaurantReducer';
 
-const RestaurantScreen = () => {
+const RestaurantScreen:React.FC = () => {
   const navigation = useNavigation();
   const tailwind = useTailwind();
 
@@ -45,8 +45,6 @@ const RestaurantScreen = () => {
       lat
     }
   } = useRoute<any>();
-
-  useEffect(() => {console.log(dishes,'dishes')},[dishes]);
 
   useEffect(() => {
     dispatch(
@@ -83,7 +81,7 @@ const RestaurantScreen = () => {
             onPress={navigation.goBack}
             style={tailwind('absolute top-14 left-5 p-2 bg-gray-100 rounded-full')}
           >
-            <ArrowLeftIcon size={20} color="#F9F9F9" />
+            <ArrowLeftIcon size={20} color="#121212" />
           </TouchableOpacity>
         </View>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useTailwind } from 'tailwind-rn'
 
@@ -10,8 +10,7 @@ import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { 
-  selectBasketItems, 
+import {
   addToBasket, 
   selectBasketItemsWithId, 
   removeFromBasket 

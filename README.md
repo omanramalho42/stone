@@ -1,7 +1,7 @@
 # stone
 Este é um aplicativo de delivery de restaurantes desenvolvido com React Native, Typescript, Tailwind CSS e Sanity CMS. O objetivo deste aplicativo é fornecer aos usuários uma solução fácil e eficiente para encomendar refeições de seus restaurantes favoritos.
 
-Recursos
+Recursos ⚙️
 
 Lista de restaurantes: O usuário pode visualizar uma lista de restaurantes disponíveis no aplicativo.
 
@@ -23,7 +23,7 @@ Tailwind CSS: Este é um framework de estilo de design minimalista e modular que
 
 Sanity CMS: Este é um CMS baseado em nuvem que permite aos usuários gerenciar o conteúdo do aplicativo, incluindo restaurantes, menus e encomendas.
 
-Conclusão
+Conclusão 📝
 
 Este aplicativo de delivery de restaurantes é uma solução conveniente e eficiente para os usuários que desejam encomendar refeições de seus restaurantes favoritos. Com sua interface intuitiva e opções de pagamento seguras, este aplicativo oferece uma experiência de usuário superior. Além disso, com a combinação de tecnologias de alta qualidade, como React Native, Typescript, Tailwind CSS e Sanity CMS, este aplicativo é uma opção confiável e escalável para qualquer restaurante que deseje fornecer delivery aos seus clientes.
 
